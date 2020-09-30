@@ -6,13 +6,10 @@ import Todos from "./components/ToDo/Todos";
 import DashBoard from "./components/DashBoard/dashboard";
 import SiginIn from "./components/Authentication/SignIn";
 import SignUp from "./components/Authentication/SignUp";
+import Calendar from "./components/Calendar/calendar";
 
 class App extends Component {
   state = {
-    name: "",
-    lastName: "",
-    family: "",
-    userName: "",
     todos: [
       { id: 1, content: "make stuff up", exe: "eyal", private: "" },
       { id: 2, content: "buy things", exe: "family", private: "" },
@@ -31,6 +28,7 @@ class App extends Component {
               path="/"
               render={() => <DashBoard {...this.state} />}
             />
+            <Route pth="/calendar" component={Calendar} />
             <Route path="/todos" render={() => <Todos {...this.state} />} />
             <Route path="/SignIn" component={SiginIn} />
             <Route path="/SignUp" component={SignUp} />
