@@ -6,12 +6,9 @@ import Todos from "./components/ToDo/Todos";
 import DashBoard from "./components/DashBoard/dashboard";
 import Calendar from "./components/Calendar/calendar";
 import App from "./App";
-import Login from "./components/Authentication/Login";
+import Uploader from "./components/Gallery/uploader";
 
 class Home extends Component {
-  constrcutor() {
-    this.handleLogout = this.handleLogout.bind(this);
-  }
   state = {
     todos: [
       { id: 1, content: "make stuff up", exe: "eyal", private: "" },
@@ -33,7 +30,7 @@ class Home extends Component {
             />
             <Route path="/calendar" component={Calendar} />
             <Route path="/todos" render={() => <Todos {...this.state} />} />
-            <Route path="/Logout" component={Login} />
+            <Route path="/uploader" component={Uploader} />
           </Switch>
         </div>
       </BrowserRouter>

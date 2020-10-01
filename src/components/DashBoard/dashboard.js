@@ -20,6 +20,11 @@ class Dashboard extends Component {
               <h3 className="right blue-text darken-5">Calendar</h3>
             </NavLink>
           </div>
+          <div className="col s20 m6 l4">
+            <NavLink to="/uploader">
+              <h3 className="right blue-text darken-5">Gallery</h3>
+            </NavLink>
+          </div>
         </div>
       </div>
     );
