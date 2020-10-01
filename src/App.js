@@ -80,7 +80,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Family Business </h1>
       {user ? (
         <Home />
       ) : (
