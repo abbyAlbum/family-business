@@ -9,6 +9,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "dhtmlx-scheduler": "^5.3.9",
+    "firebase": "^7.21.1",
+    "firebase-admin": "^9.2.0",
     "ionic-native": "https://github.com/ionic-team/ionic-native/tarball/v3.5.0",
     "moment": "^2.29.0",
     "react": "^16.13.1",

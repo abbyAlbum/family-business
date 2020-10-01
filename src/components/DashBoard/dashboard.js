@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import TodoList from "../ToDo/ToDoList";
-import Calendar from "../Calendar/calendar";
+import calendar from "../Calendar/calendar";
 import Todos from "../ToDo/Todos";
 
 class Dashboard extends Component {

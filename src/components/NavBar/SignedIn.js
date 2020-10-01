@@ -26,6 +26,9 @@ const SignedIn = () => {
           NN
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/app">Logout</NavLink>
+      </li>
     </ul>
   );
 };

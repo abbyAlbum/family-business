@@ -11,7 +11,6 @@ const NavBar = () => {
           Family Business
         </Link>
         <SignedIn />
-        <SignedOut />
       </div>
     </nav>
   );
