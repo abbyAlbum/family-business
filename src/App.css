@@ -5,6 +5,14 @@
   font-family: "Nunito", sans-serif;
 }
 
+.app.header {
+  padding: 60px;
+  text-align: center;
+  background: #603bbb;
+  color: white;
+  font-size: 30px;
+}
+
 button {
   border: none;
   outline: none;
