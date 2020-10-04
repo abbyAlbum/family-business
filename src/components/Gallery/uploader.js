@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { storage } from "../../Config/fire";
-import logo from "../../logo.svg";
 
 export default function Uploader() {
   const [image, setImage] = useState(null);
@@ -31,7 +30,7 @@ export default function Uploader() {
 
   const handleUpdate = () => {
     if (image) {
-      const uploadTask = storage.ref(image.name).put(image);
+      const uploadTask = storage.ref(`/images/${image.name}`).put(image);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -45,10 +44,12 @@ export default function Uploader() {
         },
         () => {
           storage
-            .ref(image.name)
+            .ref("images")
+            .child(image.name)
             .getDownloadURL()
             .then((url) => {
               setUrl(url);
+              console.log(url);
               setProgress(0);
             });
         }
@@ -69,11 +70,7 @@ export default function Uploader() {
         <p style={{ color: "red" }}>{error}</p>
       </div>
 
-      {url ? (
-        <img src={url} alt="logo" />
-      ) : (
-        <img src={logo} className="App-logo" alt="logo" />
-      )}
+      {url ? <img src={url} alt="logo" /> : <img src="" />}
     </div>
   );
 }
