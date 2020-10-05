@@ -7,6 +7,7 @@ import DashBoard from "./components/DashBoard/dashboard";
 import Calendar from "./components/Calendar/calendar";
 import App from "./App";
 import Uploader from "./components/Gallery/uploader";
+import Chats from "./components/Chat/chats";
 
 class Home extends Component {
   state = {
@@ -25,12 +26,13 @@ class Home extends Component {
             {/*FIXME: This is temporary until Firebase is up so we can get the state from anywhere*/}
             <Route
               exact
-              path="/"
+              path="/home"
               render={() => <DashBoard {...this.state} />}
             />
             <Route path="/calendar" component={Calendar} />
             <Route path="/todos" render={() => <Todos {...this.state} />} />
             <Route path="/uploader" component={Uploader} />
+            <Route path="/chats" component={Chats} />
           </Switch>
         </div>
       </BrowserRouter>

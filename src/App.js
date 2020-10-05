@@ -3,6 +3,7 @@ import "./App.css";
 import fire from "./Config/fire";
 import Home from "./Home";
 import Login from "./components/Authentication/Login";
+import Logout from "./logout";
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -60,7 +61,10 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    fire.auth().signOut();
+    fire
+      .auth()
+      .signOut()
+      .then((window.location = "/"));
   };
 
   const authListener = () => {
