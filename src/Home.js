@@ -10,12 +10,6 @@ import Uploader from "./components/Gallery/uploader";
 import Chats from "./components/Chat/chats";
 
 class Home extends Component {
-  state = {
-    todos: [
-      { id: 1, content: "make stuff up", exe: "eyal", private: "" },
-      { id: 2, content: "buy things", exe: "family", private: "" },
-    ],
-  };
 
   render() {
     return (
@@ -24,15 +18,11 @@ class Home extends Component {
           <NavBar />
           <Switch>
             {/*FIXME: This is temporary until Firebase is up so we can get the state from anywhere*/}
-            <Route
-              exact
-              path="/home"
-              render={() => <DashBoard {...this.state} />}
-            />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/todos" render={() => <Todos {...this.state} />} />
-            <Route path="/uploader" component={Uploader} />
-            <Route path="/chats" component={Chats} />
+            <Route exact path="/home" component={ DashBoard } />
+            <Route path="/calendar" component={ Calendar } />
+            <Route path="/todos" component={ Todos } />
+            <Route path="/uploader" component={ Uploader } />
+            <Route path="/chats" component={ Chats } />
           </Switch>
         </div>
       </BrowserRouter>

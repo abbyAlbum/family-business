@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import TodoList from "../ToDo/ToDoList";
 import calendar from "../Calendar/calendar";
 import Todos from "../ToDo/Todos";
+import { connect } from 'react-redux'
 
 class Dashboard extends Component {
   render() {
@@ -31,4 +32,10 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos.todos
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);
