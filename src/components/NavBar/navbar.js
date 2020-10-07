@@ -1,38 +1,30 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import SignedIn from "./SignedIn";
-import fire from "../../Config/fire";
+import SignedOut from "./SignedOut"
 import "./navbar.css";
 
-const NavBar = () => {
-  const handleLogout = () => {
-    fire
-      .auth()
-      .signOut()
-      .then((window.location = "/"));
-  };
+const NavBar = (props) => {
+
+  const { auth, profile } = props;
+  const links = auth.uid ? <SignedIn profile={ profile } /> : <SignedOut />
 
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <button
-          onClick={handleLogout}
-          class="btn btn-info btn-lg"
-          type="submit"
-          name="action"
-          margin-top="8px"
-        >
-          Logout
-        </button>
-
-        <Link to="/DashBoard" className="brand-logo">
-          Family Business
-        </Link>
-
-        <SignedIn />
+        <NavLink to="/" className="brand-logo">Family Business</NavLink>
+        { links }
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);

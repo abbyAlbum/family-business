@@ -7,7 +7,16 @@ const initState = {
 };
 
 const todoReducer = (state = initState, action) => {
-    return state;
+    switch (action.type) {
+        case 'FINISH_TODO_SUCCESS':
+            console.log('finished todo successfully')
+            return state;
+        case 'FINISH_TODO_ERROR':
+            console.log('error in finishing todo')
+            return state;
+        default:
+            return state;
+    }
 }
 
 export default todoReducer;
