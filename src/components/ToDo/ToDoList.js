@@ -9,14 +9,7 @@ const TodoList = ({ todos, finishTodo }) => {
     todos.map((todo) => {
       return (
         <div className="collection-item" key={todo.id}>
-          <span
-            onClick={() => {
-              handleClick(todo, finishTodo);
-            }}
-          >
-            {" "}
-            {todo.content}{" "}
-          </span>
+          <span onClick={() => { handleClick(todo, finishTodo); }}>{todo.content}</span>
         </div>
       );
     })

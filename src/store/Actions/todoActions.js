@@ -24,10 +24,9 @@ export const addTodo = (content) => {
     firestore
       .collection("todos")
       .add({
-        text: content,
+        content: content,
         done: false,
         exe: "",
-        id: "",
         private: false,
       })
       .then(() => {
