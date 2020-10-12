@@ -1,6 +1,3 @@
-import { actionBegin } from "@syncfusion/ej2-react-schedule";
-import { auth } from "firebase";
-
 export const finishTodo = (todo) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();

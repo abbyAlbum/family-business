@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../../store/Actions/todoActions";
 
-function AddTodo({ todos, addTodo }) {
+function AddTodo({ addTodo }) {
   const [value, setValue] = useState("");
 
   const handleOnChange = (e) => {
@@ -15,12 +15,7 @@ function AddTodo({ todos, addTodo }) {
 
   return (
     <>
-      <input
-        type="text"
-        onChange={handleOnChange}
-        value={value}
-        placeholder="You text here"
-      />
+      <input type="text" onChange={handleOnChange} value={value} placeholder="You text here"/>
       <button onClick={handleAdd}>Add Todo</button>
     </>
   );
@@ -28,7 +23,7 @@ function AddTodo({ todos, addTodo }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTodo: (todos) => dispatch(addTodo(todos)),
+    addTodo: (todos) => dispatch(addTodo(todos))
   };
 };
 
