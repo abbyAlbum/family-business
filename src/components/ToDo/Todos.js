@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from "react-router-dom";
+import AddToDo from "./AddToDo";
 
 const Todos = (props) => {
 
@@ -15,6 +16,8 @@ const Todos = (props) => {
     <div className="todo-screen center">
       <h1 className="center blue-text">Todo's</h1>
       <TodoList todos={todos} />
+
+      <AddToDo />
     </div>
   );
 };

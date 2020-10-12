@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import TodoList from "../ToDo/ToDoList";
 import calendar from "../Calendar/calendar";
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 class Dashboard extends Component {
   render() {
-
-    const { auth, todos } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' />
+    const { auth, todos, notifications } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <div className="dashboard container">
@@ -19,7 +18,7 @@ class Dashboard extends Component {
             <NavLink to="/todos">
               <h3 className="center blue-text darken-5">Todo's</h3>
             </NavLink>
-            <TodoList todos={ todos } />
+            <TodoList todos={todos} />
           </div>
           <div className="col s20 m6 l4">
             <NavLink to="/Calendar">
@@ -48,7 +47,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'todos'}
-  ])
+  firestoreConnect([{ collection: "todos" }])
 )(Dashboard);
