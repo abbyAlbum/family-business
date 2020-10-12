@@ -22,7 +22,6 @@ const TodoList = ({ todos, finishTodo }) => {
 };
 
 const handleClick = (todo, finishTodo) => {
-  console.log(todo);
   finishTodo(todo);
 }
 
