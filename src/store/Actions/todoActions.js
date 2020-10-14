@@ -3,9 +3,9 @@ export const finishTodo = (todo) => {
     const firestore = getFirestore();
 
     firestore
-      .collections("todos")
+      .collection("todos")
       .doc(todo.id)
-      .set({ done: true })
+      .set({ ...todo, done: true })
       .then(() => {
         dispatch({ type: "FINISH_TODO_SUCCESS" });
       })
@@ -15,8 +15,20 @@ export const finishTodo = (todo) => {
   };
 };
 
+export const deleteTodo = (todo) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore.collection("todos").doc(todo.id).delete().then(() => {
+      dispatch({ type: "DELETE_TODO_SUCCESS" });
+    }).catch((err) => {
+      dispatch({ type: "DELETE_TODO_ERROR", err })
+    })
+  }
+}
+
 export const addTodo = (content) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection("todos")
@@ -30,7 +42,7 @@ export const addTodo = (content) => {
         dispatch({ type: "ADD_TODO_SUCCESS" });
       })
       .catch((err) => {
-        dispatch({ type: "ADD_TODO_ERROR" });
+        dispatch({ type: "ADD_TODO_ERROR", err });
       });
   };
 };

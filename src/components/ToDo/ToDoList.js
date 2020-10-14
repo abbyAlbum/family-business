@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { finishTodo } from "../../store/Actions/todoActions";
+import { finishTodo, deleteTodo } from "../../store/Actions/todoActions";
 
-const TodoList = ({ todos, finishTodo }) => {
-  console.log(todos);
+const TodoList = (props) => {
+  
+  const { todos, finishTodo, deleteTodo } = props;
+
   //TODO: Check if need to show only user's todos.
   const todoList = todos.length ? (
     todos.map((todo) => {
       return (
         <div className="collection-item" key={todo.id}>
           <span onClick={() => { handleClick(todo, finishTodo); }}>{todo.content}</span>
+          <button className="right" onClick={() => { handleClick(todo, deleteTodo); }}> Delete todo </button>
         </div>
       );
     })
@@ -20,13 +23,14 @@ const TodoList = ({ todos, finishTodo }) => {
   return <div className="todos collection">{todoList}</div>;
 };
 
-const handleClick = (todo, finishTodo) => {
-  finishTodo(todo);
+const handleClick = (todo, todoAction) => {
+  todoAction(todo);
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     finishTodo: (todo) => dispatch(finishTodo(todo)),
+    deleteTodo: (todo) => dispatch(deleteTodo(todo))
   };
 };
 

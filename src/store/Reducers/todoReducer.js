@@ -22,6 +22,15 @@ const todoReducer = (state = initState, action) => {
     case "ADD_TODO_ERROR":
       console.log("error in adding todo");
       return state;
+
+    case "DELETE_TODO_SUCCESS":
+      console.log("todo deleted successfully");
+      return state;
+
+    case "DELETE_TODO_ERROR":
+      console.log("error deleting todo");
+      return state;
+
     default:
       return state;
   }
