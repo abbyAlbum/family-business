@@ -3,10 +3,12 @@ import authReducer from "./authReducer";
 import { combineReducers } from "redux";
 import { firestoreReducer } from "redux-firestore";
 import { firebaseReducer } from "react-redux-firebase";
+import carReducer from "./carReducer";
 
 const rootReducer = combineReducers({
   todos: todoReducer,
   auth: authReducer,
+  car: carReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
 });

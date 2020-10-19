@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import TodoList from "../ToDo/ToDoList";
-import calendar from "../Calendar/calendar";
+import ShowCarList from "../Car/ShowCarList";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 
 class Dashboard extends Component {
   render() {
-    const { auth, todos, notifications } = this.props;
+    const { auth, todos, car } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
@@ -30,6 +30,11 @@ class Dashboard extends Component {
               <h3 className="right blue-text darken-5">Gallery</h3>
             </NavLink>
           </div>
+          <div className="col s30 m6 50">
+            <NavLink to="/car">
+              <h3 className="right blue-text darken-5">It's my turn!</h3>
+            </NavLink>
+          </div>
         </div>
       </div>
     );
@@ -37,13 +42,12 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-
   return {
     // todos: state.todos.todos,
     todos: state.firestore.ordered.todos ? state.firestore.ordered.todos : [],
-    auth: state.firebase.auth
-  }
-}
+    auth: state.firebase.auth,
+  };
+};
 
 export default compose(
   connect(mapStateToProps),

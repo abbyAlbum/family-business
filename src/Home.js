@@ -8,9 +8,9 @@ import Calendar from "./components/Calendar/calendar";
 import Uploader from "./components/Gallery/uploader";
 import Chats from "./components/Chat/chats";
 import SignIn from "./components/Authentication/SignIn";
+import Car from "./components/Car/car";
 
 class Home extends Component {
-
   render() {
     return (
       <BrowserRouter>
@@ -18,12 +18,13 @@ class Home extends Component {
           <NavBar />
           <Switch>
             {/*FIXME: This is temporary until Firebase is up so we can get the state from anywhere*/}
-            <Route exact path="/home" component={ DashBoard } />
-            <Route path="/calendar" component={ Calendar } />
-            <Route path="/todos" component={ Todos } />
-            <Route path="/uploader" component={ Uploader } />
-            <Route path="/chats" component={ Chats } />
-            <Route path="/signin" component={ SignIn } />
+            <Route exact path="/home" component={DashBoard} />
+            <Route path="/calendar" component={Calendar} />
+            <Route path="/todos" component={Todos} />
+            <Route path="/uploader" component={Uploader} />
+            <Route path="/chats" component={Chats} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/car" component={Car} />
           </Switch>
         </div>
       </BrowserRouter>
