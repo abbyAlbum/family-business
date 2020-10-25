@@ -1,5 +1,5 @@
 const initState = {
-  todos: [],
+  cars: [],
 };
 
 const carReducer = (state = initState, action) => {

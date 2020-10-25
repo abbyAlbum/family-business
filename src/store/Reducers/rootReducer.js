@@ -8,7 +8,7 @@ import carReducer from "./carReducer";
 const rootReducer = combineReducers({
   todos: todoReducer,
   auth: authReducer,
-  car: carReducer,
+  cars: carReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
 });

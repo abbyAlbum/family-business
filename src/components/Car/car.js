@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 
 const Car = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { car, auth } = props;
+  const { cars, auth } = props;
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -20,7 +20,7 @@ const Car = (props) => {
   return (
     <div className="todo-screen center">
       <h1 className="center blue-text">It's my turn!</h1>
-
+      <ShowCarList cars={cars} />
       <input type="button" value="Click to Open Popup" onClick={togglePopup} />
 
       {isOpen && <Pickday handleClose={togglePopup} />}
@@ -30,7 +30,7 @@ const Car = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    car: state.firestore.ordered.car ? state.firestore.ordered.car : [],
+    cars: state.firestore.ordered.cars ? state.firestore.ordered.cars : [],
     auth: state.firebase.auth,
   };
 };
