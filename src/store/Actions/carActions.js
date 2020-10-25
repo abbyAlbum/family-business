@@ -40,3 +40,24 @@ const fetchDay = async (days, firestore) => {
     });
   return flag;
 };
+
+export const renewCar = () => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore.collection("car").onSnapshot((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        firestore
+          .collection("car")
+          .doc(doc.id)
+          .delete()
+          .then(() => {
+            dispatch({ type: "RENEW_CAR_SUCCESS" });
+          })
+          .catch((err) => {
+            dispatch({ type: "RENEW_CAR_ERROR", err });
+          });
+      });
+    });
+  };
+};
