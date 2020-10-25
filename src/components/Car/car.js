@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -8,16 +8,22 @@ import ShowCarList from "./ShowCarList";
 import { Redirect } from "react-router-dom";
 
 const Car = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const { car, auth } = props;
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="todo-screen center">
       <h1 className="center blue-text">It's my turn!</h1>
-      <Link to="/pickday">
-        <button>Pick your day</button>
-      </Link>
+
+      <input type="button" value="Click to Open Popup" onClick={togglePopup} />
+
+      {isOpen && <Pickday handleClose={togglePopup} />}
     </div>
   );
 };

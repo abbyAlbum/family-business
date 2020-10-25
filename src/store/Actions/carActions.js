@@ -4,15 +4,18 @@ export const addCarDay = (day, name) => {
   return async (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     var i = await fetchDay(day, firestore);
-    console.log("we're in add " + i + " after fetch")
     if (i) {
-      firestore.collection("car").add({
+      firestore
+        .collection("car")
+        .add({
           day: day,
           name: name,
           time: "",
-        }).then(() => {
+        })
+        .then(() => {
           dispatch({ type: "ADD_CAR_DAY_SUCCESS" });
-        }).catch((err) => {
+        })
+        .catch((err) => {
           dispatch({ type: "ADD_CAR_DAY_ERROR", err });
         });
     }
@@ -20,18 +23,20 @@ export const addCarDay = (day, name) => {
 };
 
 const fetchDay = async (days, firestore) => {
-  var flag = await firestore.collection("car").get().then((querySnapshot) => {
-    if (!querySnapshot.empty) {
-      var flag = true
-      querySnapshot.forEach((doc) => {
-        if (days === doc.data().day)
-          flag = false;
-      });
-      return flag;
-    }
-  }).catch((error) => {
-    console.log(error);
-  });
-  console.log(flag);
+  var flag = await firestore
+    .collection("car")
+    .get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        var flag = true;
+        querySnapshot.forEach((doc) => {
+          if (days === doc.data().day) flag = false;
+        });
+        return flag;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return flag;
-}
+};

@@ -5,37 +5,49 @@ import { compose } from "redux";
 import { addCarDay } from "../../store/Actions/carActions";
 import { Link } from "react-router-dom";
 
-function PickDay({ addCarDay }) {
+function PickDay(props) {
   const [value, setValue] = useState("");
+  const { handleClose, addCarDay } = props;
+  var i = "";
 
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };
-  const handleAdd = (day) => {
+
+  const handleAddDay = (day) => {
     setValue("");
+    i = day;
+    console.log(i);
     addCarDay(day, value);
   };
 
   return (
     <>
-      <h1 className="center blue-text"> Pick Your Car Day</h1>
-      <input
-        type="text"
-        onChange={handleOnChange}
-        value={value}
-        placeholder="Input your name here"
-      />
-      <button onClick={() => handleAdd("Sunday")}>Sunday</button>
-      <button onClick={() => handleAdd("Monday")}>Monday</button>
-      <button onClick={() => handleAdd("Tuesday")}>Tuesday</button>
-      <button onClick={() => handleAdd("Wednesday")}>Wednesday</button>
-      <button onClick={() => handleAdd("Thursday")}>Thursday</button>
-      <button onClick={() => handleAdd("Friday")}>Friday</button>
-      <button onClick={() => handleAdd("Saturday")}>Saturday</button> <br></br>
-      <br></br>
-      <Link to="/car">
-        <button>I've chosen my turn!</button>
-      </Link>
+      <div className="popup-box">
+        <div className="box">
+          <span className="close-icon" onClick={handleClose}>
+            x
+          </span>
+          <h1 className="center blue-text"> Pick Your Car Day</h1>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            value={value}
+            placeholder="Input your name here"
+          />
+          <button onClick={() => handleAddDay("Sunday")}>Sunday</button>
+          <button onClick={() => handleAddDay("Monday")}>Monday</button>
+          <button onClick={() => handleAddDay("Tuesday")}>Tuesday</button>
+          <button onClick={() => handleAddDay("Wednesday")}>Wednesday</button>
+          <button onClick={() => handleAddDay("Thursday")}>Thursday</button>
+          <button onClick={() => handleAddDay("Friday")}>Friday</button>
+          <button onClick={() => handleAddDay("Saturday")}>
+            Saturday
+          </button>{" "}
+          <br></br>
+          <br></br>
+        </div>
+      </div>
     </>
   );
 }
