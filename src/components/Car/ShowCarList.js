@@ -14,7 +14,7 @@ const ShowCarList = (cars) => {
     <p className="center"> No one is using the car this week </p>
   );
 
-  return <div className="cars collection">{showcarlist}</div>;
+  return <div className="car collection">{showcarlist}</div>;
 };
 
 export default ShowCarList;

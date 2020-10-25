@@ -21,7 +21,7 @@ const Car = (props) => {
     <div className="todo-screen center">
       <h1 className="center blue-text">It's my turn!</h1>
       <ShowCarList cars={cars} />
-      <input type="button" value="Click to Open Popup" onClick={togglePopup} />
+      <input type="button" value="Pick Your Car Day" onClick={togglePopup} />
 
       {isOpen && <Pickday handleClose={togglePopup} />}
     </div>
