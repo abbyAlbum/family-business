@@ -7,11 +7,13 @@ import Pickday from "./PickDay";
 import ShowCarList from "./ShowCarList";
 import { Redirect } from "react-router-dom";
 import Countdown from "react-countdown";
+import moment from "moment";
+import Timer from "./timer";
 import { renewCar } from "../../store/Actions/carActions";
 
 const Car = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { cars, auth, renewCar } = props;
+  const { car, auth, renewCar } = props;
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -40,8 +42,7 @@ const Car = (props) => {
   return (
     <div className="todo-screen center">
       <h1 className="center blue-text">It's my turn!</h1>
-      <Countdown date={Date.now() + 6.048e8} renderer={renderer} />
-      <ShowCarList cars={cars} />
+      <ShowCarList car={car} />
       <input type="button" value="Pick Your Car Day" onClick={togglePopup} />
 
       {isOpen && <Pickday handleClose={togglePopup} />}
@@ -51,7 +52,7 @@ const Car = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cars: state.firestore.ordered.cars ? state.firestore.ordered.cars : [],
+    car: state.firestore.ordered.car ? state.firestore.ordered.car : [],
     auth: state.firebase.auth,
   };
 };

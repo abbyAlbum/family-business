@@ -61,3 +61,24 @@ export const renewCar = () => {
     });
   };
 };
+
+export const changeCar = (car, name) => {
+  console.log(car);
+  console.log(name);
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("car")
+      .doc(car.id)
+      .update({
+        name: name,
+      })
+      .then(() => {
+        dispatch({ type: "CHANGE_CAR_SUCCESS" });
+      })
+      .catch((err) => {
+        dispatch({ type: "CHANGE_CAR_ ERROR", err });
+      });
+  };
+};

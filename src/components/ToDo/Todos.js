@@ -8,6 +8,7 @@ import AddToDo from "./AddToDo";
 
 const Todos = (props) => {
   const { todos, auth } = props;
+  console.log(todos);
 
   if (!auth.uid) return <Redirect to="/signin" />;
 

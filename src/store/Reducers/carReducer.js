@@ -20,6 +20,12 @@ const carReducer = (state = initState, action) => {
     case "RENEW_CAR_ERROR":
       console.log("error in deleting cars");
       return state;
+    case "CHANGE_CAR_SUCCESS":
+      console.log("success in changing car");
+      return state;
+    case "CHANGE_CAR_ERROR":
+      console.log("error in changing car");
+      return state;
 
     default:
       return state;
