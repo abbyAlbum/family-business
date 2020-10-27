@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { storage } from "../../Config/fire";
+import { connect } from "react-redux";
+import { addUrl } from "../../store/Actions/galleryActions";
+import Gallery from "./gallery";
 
-export default function Uploader() {
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+
+function Uploader(props) {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
+  const { images, addUrl } = props;
 
+  console.log(images);
   const handleChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -48,15 +56,20 @@ export default function Uploader() {
             .child(image.name)
             .getDownloadURL()
             .then((url) => {
-              setUrl(url);
-              console.log(url);
-              setProgress(0);
+              addToDatabase(url);
             });
         }
       );
     } else {
       setError("Error please choose an image to upload");
     }
+  };
+
+  const addToDatabase = (url) => {
+    setUrl(url);
+    console.log(url);
+    setProgress(0);
+    addUrl(url);
   };
 
   return (
@@ -70,7 +83,26 @@ export default function Uploader() {
         <p style={{ color: "red" }}>{error}</p>
       </div>
 
-      {url ? <img src={url} alt="logo" /> : <img src="" />}
+      <Gallery images={images} />
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    images: state.firestore.ordered.images
+      ? state.firestore.ordered.images
+      : [],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUrl: (url) => dispatch(addUrl(url)),
+  };
+};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: "images" }])
+)(Uploader);

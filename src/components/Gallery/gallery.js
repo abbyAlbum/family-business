@@ -1,40 +1,23 @@
-import { storage } from "../../Config/fire";
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import "reactjs-popup/dist/index.css";
 
-export default function Gallery() {
-  const [url, setUrl] = useState("");
-
-  var storageRef = storage().ref("images/");
-  var starsRef = storageRef.child("images/IMG_0001.JPG");
-  starsRef
-    .getDownloadURL()
-    .then(function (url) {
-      setUrl(url);
+const Gallery = (images) => {
+  const myImageList = images.images;
+  console.log(myImageList);
+  const showImages = myImageList.length ? (
+    myImageList.map((images) => {
+      return (
+        <div className="collection-item" key={images.id}>
+          <img src={images.url} alt="image" />
+        </div>
+      );
     })
-    .catch(function (error) {
-      switch (error.code) {
-        case "storage/object-not-found":
-          // File doesn't exist
-          break;
-
-        case "storage/unauthorized":
-          // User doesn't have permission to access the object
-          break;
-
-        case "storage/canceled":
-          // User canceled the upload
-          break;
-
-        case "storage/unknown":
-          // Unknown error occurred, inspect the server response
-          break;
-      }
-    });
-
-  return (
-    <div>
-      {" "}
-      <img src={url} />
-    </div>
+  ) : (
+    <p className="center"> No images in gallery </p>
   );
-}
+
+  return <div className="images collection">{showImages}</div>;
+};
+
+export default Gallery;
