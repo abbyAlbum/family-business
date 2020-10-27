@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { storage } from "../../Config/fire";
 import { connect } from "react-redux";
 import { addUrl } from "../../store/Actions/galleryActions";
-import Gallery from "./gallery";
+import Gallerys from "./gallerys";
 
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -75,6 +75,8 @@ function Uploader(props) {
   return (
     <div>
       <div>
+        <br></br>
+        <Gallerys images={images} />
         <input type="file" onChange={handleChange} />
         <button onClick={handleUpdate}> Upload </button>
       </div>
@@ -82,8 +84,6 @@ function Uploader(props) {
         {progress > 0 ? <progress value={progress} max="100" /> : ""}
         <p style={{ color: "red" }}>{error}</p>
       </div>
-
-      <Gallery images={images} />
     </div>
   );
 }
