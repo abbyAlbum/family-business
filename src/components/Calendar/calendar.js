@@ -9,28 +9,39 @@ import {
   Agenda,
   EventSettingsModel,
 } from "@syncfusion/ej2-react-schedule";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 import Calendar from "react-calendar";
+import Notifications from "./Notifications";
 
-class calendar extends React.Component {
-  data = [
-    {
-      Id: 2,
-      Subject: "Paris",
-      StartTime: new Date(2020, 8, 15, 10, 0),
-      EndTime: new Date(2020, 8, 15, 12, 30),
-    },
-  ];
+const calendar = (props) => {
+  const { notifys } = props;
+  console.log(notifys);
 
-  render() {
-    return (
+  return (
+    <div>
       <ScheduleComponent
         currentView="Month"
-        eventSettings={{ dataSource: this.data }}
+        eventSettings={{ dataSource: notifys }}
       >
+        <Notifications notifys={notifys} />
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default calendar;
+const mapStateToProps = (state) => {
+  return {
+    notifys: state.firestore.ordered.notifys
+      ? state.firestore.ordered.notifys
+      : [],
+    auth: state.firebase.auth,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "notifications" }])
+)(calendar);
