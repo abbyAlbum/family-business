@@ -15,29 +15,38 @@ import { compose } from "redux";
 import Calendar from "react-calendar";
 import Notifications from "./Notifications";
 
-const calendar = (props) => {
-  const { notifys } = props;
-  console.log(notifys);
+const calendar = () => {
+  const notifys = [{
+    Id: 2,
+    Subject: 'Paris',
+    StartTime: new Date(2020, 10, 15, 10, 0),
+    EndTime: new Date(2020, 10, 15, 12, 30),
+}];
+
 
   return (
+    
     <div>
       <ScheduleComponent
         currentView="Month"
         eventSettings={{ dataSource: notifys }}
       >
-        <Notifications notifys={notifys} />
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+        
+        <Notifications notifys={notifys} />
       </ScheduleComponent>
     </div>
   );
+  
 };
+
+
 
 const mapStateToProps = (state) => {
   return {
     notifys: state.firestore.ordered.notifys
       ? state.firestore.ordered.notifys
       : [],
-    auth: state.firebase.auth,
   };
 };
 

@@ -14,6 +14,7 @@ import { renewCar } from "../../store/Actions/carActions";
 const Car = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { car, auth, renewCar } = props;
+ 
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
