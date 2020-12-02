@@ -10,22 +10,8 @@ const TodoList = (props) => {
     todos.map((todo) => {
       return (
         <div className="collection-item" key={todo.id}>
-          <span
-            onClick={() => {
-              handleClick(todo, finishTodo);
-            }}
-          >
-            {todo.content}
-          </span>
-          <button
-            className="right"
-            onClick={() => {
-              handleClick(todo, deleteTodo);
-            }}
-          >
-            {" "}
-            Delete todo{" "}
-          </button>
+          <span onClick={() => { handleClick(todo, finishTodo); }} > {todo.content} </span>
+          <button className="right" onClick={() => { handleClick(todo, deleteTodo); }} > {" "} Delete todo{" "} </button>
         </div>
       );
     })
