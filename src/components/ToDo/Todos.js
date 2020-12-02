@@ -25,7 +25,7 @@ const Todos = (props) => {
 const mapStateToProps = (state) => {
   return {
     todos: state.firestore.ordered.todos ? state.firestore.ordered.todos : [],
-    auth: state.firebase.auth,
+    auth: state.firebase.auth
   };
 };
 

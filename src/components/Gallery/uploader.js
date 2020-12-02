@@ -3,7 +3,7 @@ import { storage } from "../../Config/fire";
 import { connect } from "react-redux";
 import { addUrl } from "../../store/Actions/galleryActions";
 import Gallerys from "./gallerys";
-
+import { Redirect } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 
@@ -12,7 +12,9 @@ function Uploader(props) {
   const [url, setUrl] = useState("");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
-  const { images, addUrl } = props;
+  const { images, addUrl, auth } = props;
+
+  if (!auth.uid) return <Redirect to="/signin" />;
 
   console.log(images);
   const handleChange = (e) => {
@@ -90,9 +92,8 @@ function Uploader(props) {
 
 const mapStateToProps = (state) => {
   return {
-    images: state.firestore.ordered.images
-      ? state.firestore.ordered.images
-      : [],
+    images: state.firestore.ordered.images ? state.firestore.ordered.images : [],
+    auth: state.firebase.auth
   };
 };
 
